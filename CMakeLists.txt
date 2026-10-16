@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.12)
-project(SZ3Reader)
+project(SZ3ImageDataReader)
+
+if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build." FORCE)
+endif ()
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 
 find_package(ParaView REQUIRED)
 
@@ -31,4 +36,4 @@ paraview_plugin_build(
   PLUGINS ${plugins})
 
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
-  DESTINATION "${CMAKE_INSTALL_DATADIR}/licenses/sz3reader")
+  DESTINATION "${CMAKE_INSTALL_DATADIR}/licenses/sz3imagedatareader")

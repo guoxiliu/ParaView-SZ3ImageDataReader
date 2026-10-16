@@ -1,7 +1,7 @@
 NAME
-  SZ3Reader::vtkSZ3Reader
+  SZ3ImageDataReader::vtkSZ3ImageDataReader
 LIBRARY_NAME
-  vtkSZ3Reader
+  vtkSZ3ImageDataReader
 DEPENDS
   VTK::CommonExecutionModel
   ParaView::VTKExtensionsCore

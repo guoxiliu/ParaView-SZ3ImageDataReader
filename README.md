@@ -1,8 +1,8 @@
-# SZ3Reader Plugin
+# SZ3ImageDataReader Plugin
 
 ParaView/VTK reader for direct visualization of data files compressed using the SZ3 compressor.
 
-Version: 1.0
+Version: 2.0
 
 ## Features
 
@@ -43,7 +43,7 @@ cmake --install . --prefix /path/to/install
 ```bash
 cd /path/to/paraview-superbuild
 mkdir build && cd build
-cmake .. -DENABLE_sz3reader=ON
+cmake .. -DENABLE_sz3imagedatareader=ON
 cmake --build .
 ```
 
@@ -51,16 +51,16 @@ cmake --build .
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `ENABLE_sz3reader` | OFF | Enable building the sz3reader plugin |
-| `sz3reader_SOURCE_SELECTION` | git | Source selection: `git` or `source` |
-| `sz3reader_GIT_REPOSITORY` | https://github.com/guoxiliu/ParaView-SZ3Reader.git | Git repository URL |
-| `sz3reader_GIT_TAG` | origin/main | Git tag, branch, or commit |
-| `sz3reader_SOURCE_DIR` | - | Local source directory (when `SOURCE_SELECTION=source`) |
+| `ENABLE_sz3imagedatareader` | OFF | Enable building the sz3imagedatareader plugin |
+| `sz3imagedatareader_SOURCE_SELECTION` | git | Source selection: `git` or `source` |
+| `sz3imagedatareader_GIT_REPOSITORY` | https://github.com/guoxiliu/ParaView-SZ3Reader.git | Git repository URL |
+| `sz3imagedatareader_GIT_TAG` | origin/main | Git tag, branch, or commit |
+| `sz3imagedatareader_SOURCE_DIR` | - | Local source directory (when `SOURCE_SELECTION=source`) |
 
 ## Usage in ParaView
 
 1. Launch ParaView
-2. Tools → Manage Plugins → Load SZ3Reader (for external build, load `<install_dir>/lib/paraview-6.x/plugins/SZ3Reader/SZ3Reader.so`)
+2. Tools → Manage Plugins → Load SZ3ImageDataReader (for external build, load `<install_dir>/lib/paraview-6.x/plugins/SZ3ImageDataReader/SZ3ImageDataReader.so`)
 3. File → Open → Select a `.sz3` file
 4. Set the domain dimensions (X, Y, Z). Set remaining dimensions to 1 if the data is less than 3D.
 5. Check "Double Precision" if the data was compressed as float64

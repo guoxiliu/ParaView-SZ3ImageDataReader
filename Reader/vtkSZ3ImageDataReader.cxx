@@ -1,4 +1,4 @@
-#include "vtkSZ3Reader.h"
+#include "vtkSZ3ImageDataReader.h"
 
 #include "vtkCellData.h"
 #include "vtkDataArray.h"
@@ -18,9 +18,9 @@
 #include <iostream>
 #include <stdexcept>
 
-vtkStandardNewMacro(vtkSZ3Reader);
+vtkStandardNewMacro(vtkSZ3ImageDataReader);
 
-vtkSZ3Reader::vtkSZ3Reader()
+vtkSZ3ImageDataReader::vtkSZ3ImageDataReader()
 {
   this->FileName = nullptr;
   this->DomainDimensions[0] = 0;
@@ -31,12 +31,12 @@ vtkSZ3Reader::vtkSZ3Reader()
   this->SetNumberOfOutputPorts(1);
 }
 
-vtkSZ3Reader::~vtkSZ3Reader()
+vtkSZ3ImageDataReader::~vtkSZ3ImageDataReader()
 {
   this->SetFileName(nullptr);
 }
 
-void vtkSZ3Reader::SetDomainDimensions(int x, int y, int z)
+void vtkSZ3ImageDataReader::SetDomainDimensions(int x, int y, int z)
 {
   this->DomainDimensions[0] = x;
   this->DomainDimensions[1] = y;
@@ -44,14 +44,14 @@ void vtkSZ3Reader::SetDomainDimensions(int x, int y, int z)
   this->Modified();
 }
 
-void vtkSZ3Reader::GetDomainDimensions(int& x, int& y, int& z)
+void vtkSZ3ImageDataReader::GetDomainDimensions(int& x, int& y, int& z)
 {
   x = this->DomainDimensions[0];
   y = this->DomainDimensions[1];
   z = this->DomainDimensions[2];
 }
 
-int vtkSZ3Reader::RequestData(
+int vtkSZ3ImageDataReader::RequestData(
   vtkInformation* /*request*/, vtkInformationVector** /*inputVector*/, vtkInformationVector* outputVector)
 {
 
@@ -96,7 +96,7 @@ int vtkSZ3Reader::RequestData(
 }
 
 template <typename T>
-void vtkSZ3Reader::Decompress(
+void vtkSZ3ImageDataReader::Decompress(
   vtkImageData* output, std::vector<char>& compressedBuffer)
 {
   using VtkArrayT = vtkAOSDataArrayTemplate<T>;
@@ -137,7 +137,7 @@ void vtkSZ3Reader::Decompress(
   output->GetPointData()->SetScalars(dataArray);
 }
 
-int vtkSZ3Reader::RequestInformation(
+int vtkSZ3ImageDataReader::RequestInformation(
     vtkInformation* /*request*/,
     vtkInformationVector** /*inputVector*/,
     vtkInformationVector* outputVector)
@@ -160,7 +160,7 @@ int vtkSZ3Reader::RequestInformation(
   return 1;
 }
 
-void vtkSZ3Reader::PrintSelf(ostream& os, vtkIndent indent)
+void vtkSZ3ImageDataReader::PrintSelf(ostream& os, vtkIndent indent)
 {
   this->Superclass::PrintSelf(os, indent);
   os << indent << "FileName: " << (this->FileName ? this->FileName : "(none)") << "\n";

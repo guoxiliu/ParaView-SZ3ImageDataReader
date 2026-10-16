@@ -1,17 +1,17 @@
-#ifndef vtkSZ3Reader_h
-#define vtkSZ3Reader_h
+#ifndef vtkSZ3ImageDataReader_h
+#define vtkSZ3ImageDataReader_h
 
-#include "vtkSZ3ReaderModule.h" // for export macro
+#include "vtkSZ3ImageDataReaderModule.h" // for export macro
 #include "vtkImageAlgorithm.h"
 
 #include <string>
 #include <vector>
 
-class VTKSZ3READER_EXPORT vtkSZ3Reader : public vtkImageAlgorithm
+class VTKSZ3IMAGEDATAREADER_EXPORT vtkSZ3ImageDataReader : public vtkImageAlgorithm
 {
 public:
-  static vtkSZ3Reader* New();
-  vtkTypeMacro(vtkSZ3Reader, vtkImageAlgorithm);
+  static vtkSZ3ImageDataReader* New();
+  vtkTypeMacro(vtkSZ3ImageDataReader, vtkImageAlgorithm);
   void PrintSelf(ostream& os, vtkIndent indent) override;
 
   vtkSetStringMacro(FileName);
@@ -24,8 +24,8 @@ public:
   int GetDoublePrecision() const { return this->UseDoublePrecision; }
 
 protected:
-  vtkSZ3Reader();
-  ~vtkSZ3Reader();
+  vtkSZ3ImageDataReader();
+  ~vtkSZ3ImageDataReader();
   int RequestInformation(vtkInformation*, vtkInformationVector**, vtkInformationVector*) override;
   int RequestData(vtkInformation*, vtkInformationVector**, vtkInformationVector*) override;
 
@@ -34,8 +34,8 @@ protected:
   int UseDoublePrecision;
 
 private:
-  vtkSZ3Reader(const vtkSZ3Reader&);
-  void operator=(const vtkSZ3Reader&);
+  vtkSZ3ImageDataReader(const vtkSZ3ImageDataReader&);
+  void operator=(const vtkSZ3ImageDataReader&);
 
   template <typename T>
   void Decompress(vtkImageData* output, std::vector<char>& compressedBuffer);
